@@ -9,6 +9,8 @@ class Pages extends BaseController
         $data = [
             'judul' => 'Home | Warkop'
         ];
+
+        // $name = \Config\Database::connect();
         // return view('welcome_message');
         // echo "hello word!";
         echo view('layout/header', $data);

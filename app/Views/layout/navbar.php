@@ -101,10 +101,10 @@
                                     <!-- <h5 class="mb-0 text-white nav-user-name">
                                     <(disini taro tanda tanya "?")=ucfirst($this->session->userdata('name'))?>
                                     </h5> -->
-                                    <h5 class="mb-0 text-white nav-user-name">nama</h5>
+                                    <h5 class="mb-0 text-white nav-user-name"><?= user()->username; ?></h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="<?= base_url() ?>login/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
