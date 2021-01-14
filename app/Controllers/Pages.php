@@ -13,25 +13,25 @@ class Pages extends BaseController
         // $name = \Config\Database::connect();
         // return view('welcome_message');
         // echo "hello word!";
-        echo view('layout/header', $data);
-        echo view('layout/footer');
-        echo view('layout/navbar');
-        echo view('pages/dashboard');
-        echo view('layout/sidebar');
+        // echo view('layout/header', $data);
+        // echo view('layout/footer');
+        // echo view('layout/navbar');
+        echo view('pages/dashboard', $data);
+        // echo view('layout/sidebar');
     }
 
-    public function pendapatan()
+    public function dokumentasi()
     {
         $data = [
-            'judul' => 'Pendapatan | Warkop'
+            'judul' => 'Dokumentasi | Warkop'
         ];
         // return view('welcome_message');
         // echo "hello word!";
-        echo view('layout/header', $data);
-        echo view('layout/footer');
-        echo view('layout/navbar');
-        echo view('layout/sidebar');
-        echo view('pages/pendapatan');
+        // echo view('layout/header', $data);
+        // echo view('layout/footer');
+        // echo view('layout/navbar');
+        // echo view('layout/sidebar');
+        echo view('pages/pendapatan', $data);
     }
 
     public function menu()
@@ -41,11 +41,28 @@ class Pages extends BaseController
         ];
         // return view('welcome_message');
         // echo "hello word!";
-        echo view('layout/header', $data);
-        echo view('layout/footer');
-        echo view('layout/navbar');
-        echo view('layout/sidebar');
-        echo view('pages/menu');
+        // echo view('layout/header', $data);
+        // echo view('layout/footer');
+        // echo view('layout/navbar');
+        // echo view('layout/sidebar');
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('minuman');
+        $builder->select('minuman_id, minuman_nama, minuman_image, minuman_price');
+        $builder->where('minuman_stock != 0');
+        $query   = $builder->get();
+
+        $data['minuman'] = $query->getResult();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('makanan');
+        $builder->select('makanan_id, makanan_nama, makanan_image, makanan_price');
+        $builder->where('makanan_stock != 0');
+        $query   = $builder->get();
+
+        $data['makanan'] = $query->getResult();
+
+        echo view('pages/menu', $data);
     }
 
     public function makanan()
@@ -55,11 +72,18 @@ class Pages extends BaseController
         ];
         // return view('welcome_message');
         // echo "hello word!";
-        echo view('layout/header', $data);
-        echo view('layout/footer');
-        echo view('layout/navbar');
-        echo view('layout/sidebar');
-        echo view('pages/stock/makanan');
+        // echo view('layout/header', $data);
+        // echo view('layout/footer');
+        // echo view('layout/navbar');
+        // echo view('layout/sidebar');
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('makanan');
+        $builder->select('makanan_id, makanan_nama, makanan_image, makanan_stock');
+        $query   = $builder->get();
+
+        $data['makanan'] = $query->getResult();
+        echo view('pages/stock/makanan', $data);
     }
 
     public function minuman()
@@ -69,11 +93,19 @@ class Pages extends BaseController
         ];
         // return view('welcome_message');
         // echo "hello word!";
-        echo view('layout/header', $data);
-        echo view('layout/footer');
-        echo view('layout/navbar');
-        echo view('layout/sidebar');
-        echo view('pages/stock/minuman');
+        // echo view('layout/header', $data);
+        // echo view('layout/footer');
+        // echo view('layout/navbar');
+        // echo view('layout/sidebar');
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('minuman');
+        $builder->select('minuman_id, minuman_nama, minuman_image, minuman_stock');
+        $query   = $builder->get();
+
+        $data['minuman'] = $query->getResult();
+
+        echo view('pages/stock/minuman', $data);
     }
     //--------------------------------------------------------------------
 

@@ -33,6 +33,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Pages::index');
+$routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
+// $routes->get('/admin/(:segment)', 'Admin::index', ['filter' => 'role:admin']);
+$routes->delete('/admin/food/(:num)', 'Admin::delete_food/$1', ['filter' => 'role:admin']);
+$routes->delete('/admin/drink/(:num)', 'Admin::delete_drink/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/delete/(:any)', 'Pages::index');
 // $routes->get('/assets', 'Pages::index');
 
 /**

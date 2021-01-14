@@ -1,3 +1,7 @@
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -24,6 +28,41 @@
             <!-- end pageheader  -->
             <!-- ============================================================== -->
         </div>
+        <div class="table-responsive-sm">
+            <table class="table table-striped" style="
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width:98%">
+                <thead class="thead-midnightblue" style="color: midnightblue;">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col" colspan="2" style="text-align: center;">Menu</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($makanan as $food) : ?>
+                        <tr>
+                            <th scope="row"><?= $i++; ?></th>
+                            <td><img src="<?= base_url('/assets/images/makanan/' . $food->makanan_image); ?>" height=100 width=auto></img></td>
+                            <td><?= $food->makanan_nama; ?></td>
+                            <td><?= $food->makanan_price; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <?php foreach ($minuman as $drink) : ?>
+                        <tr>
+                            <th scope="row"><?= $i++; ?></th>
+                            <td><img src="<?= base_url('/assets/images/minuman/' . $drink->minuman_image); ?>" height=100 width=auto></img></td>
+                            <td><?= $drink->minuman_nama; ?></td>
+                            <td><?= $drink->minuman_price; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- footer -->
@@ -48,3 +87,5 @@
     <!-- end footer -->
     <!-- ============================================================== -->
 </div>
+
+<?= $this->endSection('content'); ?>

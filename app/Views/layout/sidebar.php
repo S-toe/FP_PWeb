@@ -37,7 +37,7 @@
                                      <a class="nav-link" href="<?php echo base_url('pages/index') ?>">Home</a>
                                  </li>
                                  <li class="nav-item">
-                                     <a class="nav-link" href="<?php echo base_url('pages/pendapatan') ?>">pendapatan</a>
+                                     <a class="nav-link" href="<?php echo base_url('pages/pendapatan') ?>">Dokumentasi</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                      <a class="nav-link" href="dashboard-sales.html">Sales</a>

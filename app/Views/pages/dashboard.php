@@ -1,4 +1,7 @@
-<div class="dashboard-wrapper">
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content'); ?> <div class="dashboard-wrapper">
+
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
             <!-- ============================================================== -->
@@ -23,6 +26,7 @@
             <!-- end pageheader  -->
             <!-- ============================================================== -->
         </div>
+        <img src="<?= base_url('/assets/images/cklt.png'); ?>" style="display: block; margin-left: auto;margin-right: auto;margin-bottom: 50px;width: 50%;">
     </div>
     <!-- ============================================================== -->
     <!-- footer -->
@@ -47,3 +51,5 @@
     <!-- end footer -->
     <!-- ============================================================== -->
 </div>
+
+<?= $this->endSection('content'); ?>

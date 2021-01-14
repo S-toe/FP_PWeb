@@ -1,3 +1,7 @@
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -24,11 +28,56 @@
             <!-- end pageheader  -->
             <!-- ============================================================== -->
         </div>
+        <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-primary" role="alert">
+                <?= session()->getFlashdata('pesan'); ?>
+            </div>
+        <?php endif; ?>
+        <?php if (in_groups('admin')) : ?>
+            <a href="/admin/create_drink" style="margin-right:15px; margin-bottom:15px; " class="btn btn-primary float-right">Tambah Minuman</a>
+        <?php endif ?>
+        <div class="table-responsive-sm">
+            <table class="table table-striped" style="
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width:98%">
+                <thead class="thead-midnightblue" style="color: midnightblue;">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col" colspan="2" style="text-align: center;">Minuman</th>
+                        <th scope="col">Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($minuman as $food) : ?>
+                        <tr>
+                            <th scope="row"><?= $i++; ?></th>
+                            <td><img src="<?= base_url('/assets/images/minuman/' . $food->minuman_image); ?>" height=100 width=auto></img></td>
+                            <td><?= $food->minuman_nama; ?></td>
+                            <td><?= $food->minuman_stock; ?></td>
+                            <?php if (in_groups('admin')) : ?>
+                                <td scope="col" colspan="2">
+                                    <a href="/admin/edit_drink/<?= $food->minuman_id; ?>" class="btn btn-warning text-white">Edit</a>
+                                    <form action="/admin/drink/<?= $food->minuman_id; ?>" method="POST" class="d-inline">
+                                        <?= csrf_field(); ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger" onclick=" return confirm('Apakah Anda yakin untuk menghapus?')">Delete</button>
+                                    </form>
+                                </td>
+                            <?php endif ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- footer -->
     <!-- ============================================================== -->
-    <div class="footer">
+    <div class=" footer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -48,3 +97,5 @@
     <!-- end footer -->
     <!-- ============================================================== -->
 </div>
+
+<?= $this->endSection('content'); ?>
