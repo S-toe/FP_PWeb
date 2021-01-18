@@ -34,9 +34,13 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Pages::index');
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
-// $routes->get('/admin/(:segment)', 'Admin::index', ['filter' => 'role:admin']);
+// $routes->get('/admin/(:segment)', 'Admin::$1', ['filter' => 'role:admin']);
 $routes->delete('/admin/food/(:num)', 'Admin::delete_food/$1', ['filter' => 'role:admin']);
 $routes->delete('/admin/drink/(:num)', 'Admin::delete_drink/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/edit_food/(:any)', 'Admin::edit_food/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/edit_drink/(:any)', 'Admin::edit_drink/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/create_food', 'Admin::create_food', ['filter' => 'role:admin']);
+$routes->get('/admin/create_drink', 'Admin::create_drink', ['filter' => 'role:admin']);
 $routes->get('/admin/delete/(:any)', 'Pages::index');
 // $routes->get('/assets', 'Pages::index');
 
